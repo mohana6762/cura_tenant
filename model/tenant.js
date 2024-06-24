@@ -2,8 +2,8 @@ const { Model } = require('sequelize');
 const config = require('../src/config/vars');
 
 module.exports = (sequelize, DataTypes) => {
-  class adminUser extends Model {}
-  admin.init(
+  class tenant extends Model {}
+  tenant.init(
     {
       firstName: DataTypes.STRING,
       lastName: DataTypes.STRING,
@@ -20,8 +20,8 @@ module.exports = (sequelize, DataTypes) => {
       freezeTableName: true,
     }
   );
-  admin.associate = function (models) {
-    admin.hasMany(models.adminRefreshToken, { foreignKey: 'user_id', as: 'userRefreshToken' });
-  };
-  return admin;
+  // tenant.associate = function (models) {
+  //   tenant.hasMany(models.adminRefreshToken, { foreignKey: 'user_id', as: 'userRefreshToken' });
+  // };
+  return tenant;
 };

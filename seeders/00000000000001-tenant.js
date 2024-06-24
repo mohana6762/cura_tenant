@@ -10,7 +10,7 @@ module.exports = {
       config.app.accesstoken
     );
     return queryInterface.bulkInsert(
-      { tableName: 'admin', schema: config.db.schema },
+      { tableName: 'tenant', schema: config.db.schema },
       [
         {
           firstName: 'mohana',
@@ -28,6 +28,6 @@ module.exports = {
     );
   },
   down: (queryInterface) => {
-    return queryInterface.bulkDelete({ tableName: 'admin', schema: config.db.schema }, null, {});
+    return queryInterface.bulkDelete({ tableName: 'tenant', schema: config.db.schema }, null, {});
   },
 };

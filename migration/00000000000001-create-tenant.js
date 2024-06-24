@@ -3,7 +3,7 @@ const config = require('../src/config/vars');
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable(
-      'admin',
+      'tenant',
       {
         id: {
           allowNull: false,
@@ -51,6 +51,6 @@ module.exports = {
     );
   },
   async down(queryInterface) {
-    await queryInterface.dropTable('admin');
+    await queryInterface.dropTable('tenant');
   },
 };

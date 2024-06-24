@@ -1,6 +1,6 @@
 const { Sequelize, Op } = require('sequelize');
-const db = require('../../models/index');
-const { sequelize } = require('../../models/index');
+const db = require('../../model/index');
+const { sequelize } = require('../../model/index');
 const logger = require('../config/logger');
 
 const loginService = {};

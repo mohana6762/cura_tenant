@@ -2,7 +2,7 @@
 const jwt = require('jsonwebtoken');
 const { Op } = require('sequelize');
 const config = require('../config/vars');
-const db = require('../../models/index');
+const db = require('../../model/index');
 
 async function authenticateToken(req, res, next) {
   try {
