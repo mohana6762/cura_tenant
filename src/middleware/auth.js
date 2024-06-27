@@ -12,7 +12,7 @@ async function authenticateToken(req, res, next) {
       if (err) {
         return res?.sendStatus(401);
       }
-      const users = await db?.adminUser?.findOne({
+      const users = await db?.admin?.findOne({
         where: {
           email: user?.name,
           id: user?.id,
@@ -25,6 +25,7 @@ async function authenticateToken(req, res, next) {
       if (token == null || !users) return res?.sendStatus(401);
       const usersData = { ...users?.dataValues };
       req.user = usersData;
+      console.log("jiedjiehd",usersData )
       next();
     });
   } catch (error) {

@@ -1,13 +1,12 @@
 const { Sequelize, Op } = require('sequelize');
 const db = require('../../model/index');
 const { sequelize } = require('../../model/index');
-const logger = require('../config/logger');
 
 const loginService = {};
 
 
 loginService.updateUserPassword = async (userId, newPassword) => {
-  return db.adminUser.update(
+  return db.admin.update(
     {
       password: newPassword,
     },
@@ -19,8 +18,22 @@ loginService.updateUserPassword = async (userId, newPassword) => {
   );
 };
 
+
+loginService.updateUserToken = async (userId, token) => {
+  return db.admin.update(
+    {
+      token
+    },
+    {
+      where: {
+        id: userId,
+      },
+    }
+  );
+};
+
 loginService.checkUser = async (email) => {
-  const existingCode = await db?.adminUser?.findOne({
+  const existingCode = await db.admin.findOne({
     where: {
       email,
       isActive: true,
@@ -31,7 +44,7 @@ loginService.checkUser = async (email) => {
 };
 
 loginService.adminTokenExist = async (token) => {
-  const data = await db.adminRefreshToken.findOne({
+  const data = await db.admin.findOne({
     where: {
       token,
     },
@@ -39,27 +52,23 @@ loginService.adminTokenExist = async (token) => {
   return data;
 };
 
-loginService.findRefreshTokensByAdminUserId = async (userId) => {
-  return db.adminRefreshToken.findAll({
-    where: {
-      user_id: userId,
-    },
-  });
-};
+
 
 loginService.deleteAdminRefreshToken = async (token) => {
   try {
-    const deletedRows = await db.adminRefreshToken.destroy({
-      where: {
-        token,
-      },
-    });
-
+    const deletedRows = await db.admin.update(
+      { token: null },
+      {
+        where: {
+          token: token,
+        },
+      }
+    );
     return deletedRows;
   } catch (err) {
     throw new Error(err.message);
   }
-};
+}
 
 loginService.AdminTokenExist = async (token) => {
   const data = await db.adminRefreshToken.findOne({
@@ -71,7 +80,7 @@ loginService.AdminTokenExist = async (token) => {
 };
 
 loginService.findAdminUserByEmailAndId = async (email, userId) => {
-  return db.adminUser.findOne({
+  return db.admin.findOne({
     where: {
       email,
       id: userId,
@@ -94,7 +103,7 @@ loginService.deleteExpiredRefreshTokens = async () => {
     },
   });
   await Promise.all(expiredTokens.map((token) => token.destroy()));
-  logger.info('Deleting Expired Refresh Token');
+  console.log('Deleting Expired Refresh Token');
 };
 
 loginService.deleteExpiredUserCoupon = async () => {
@@ -104,7 +113,7 @@ loginService.deleteExpiredUserCoupon = async () => {
     },
   });
   await Promise.all(expiredTokens.map((token) => token.destroy()));
-  logger.info('Deleting Expired Refresh Token');
+  console.log('Deleting Expired Refresh Token');
 };
 
 module.exports = loginService;

@@ -1,12 +1,10 @@
-
-
-
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
 
 const basename = path.basename(__filename);
 const config = require(`${__dirname}/../src/config/vars.js`).db;
+
 
 const { db } = require('../src/config/vars');
 

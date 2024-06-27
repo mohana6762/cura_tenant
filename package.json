@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "migrate:windows:local": "SET NODE_ENV=local&& npx sequelize-cli db:migrate",
+    "seed:windows:local": "SET NODE_ENV=local&& npx sequelize-cli db:seed:all",
+    "start:windows:local": "SET NODE_ENV=local&& nodemon src/app.js",
     "start": "nodemon src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,7 +19,7 @@
   "dependencies": {
     "axios": "^1.7.2",
     "body-parser": "^1.20.2",
-    "config": "^3.3.11",
+    "config": "^3.3.12",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "custom-env": "^2.0.2",
@@ -26,6 +29,7 @@
     "http-status": "^1.7.4",
     "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.2",
+    "nodemailer": "^6.9.14",
     "pg": "^8.12.0",
     "sequelize": "^6.37.3"
   }

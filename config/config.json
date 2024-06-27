@@ -1,0 +1,10 @@
+ 
+  {
+    "username": "postgres",
+    "password": "SmartWork@123",
+    "database": "cura_tenant",
+    "host": "localhost",
+    "port": 5432,
+    "dialect": "postgres",
+    "schema": "public"
+  }

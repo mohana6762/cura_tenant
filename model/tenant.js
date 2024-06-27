@@ -5,23 +5,27 @@ module.exports = (sequelize, DataTypes) => {
   class tenant extends Model {}
   tenant.init(
     {
-      firstName: DataTypes.STRING,
-      lastName: DataTypes.STRING,
-      userName: DataTypes.STRING,
+      name: DataTypes.STRING,
       email: DataTypes.STRING,
-      password: DataTypes.STRING,
-      isActive: DataTypes.BOOLEAN,
+      phoneNo: DataTypes.BIGINT,
+      website: DataTypes.STRING,
+      buildingName: DataTypes.STRING,
+      address: DataTypes.STRING,
+      unit: DataTypes.INTEGER,
+      postalCode: DataTypes.STRING,
+      country: DataTypes.STRING,
+      state: DataTypes.STRING,
+      licenseId: DataTypes.INTEGER,
+      status: DataTypes.ENUM('Active', 'Suspended', 'Pending Termination', 'Terminated'),
       isTrash: DataTypes.BOOLEAN,
     },
     {
       sequelize,
-      modelName: 'admin',
+      modelName: 'tenant',
       schema: config.db.schema,
       freezeTableName: true,
     }
   );
-  // tenant.associate = function (models) {
-  //   tenant.hasMany(models.adminRefreshToken, { foreignKey: 'user_id', as: 'userRefreshToken' });
-  // };
+  
   return tenant;
 };

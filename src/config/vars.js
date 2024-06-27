@@ -1,5 +1,5 @@
 const nodeEnv = require('custom-env');
-
+const path = require("path")
 const {
   APP_PORT,
   APP_ENV,
